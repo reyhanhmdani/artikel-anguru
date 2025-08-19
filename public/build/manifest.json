@@ -1,0 +1,25 @@
+{
+  "public/assets/img/bg-black.jpeg": {
+    "file": "assets/bg-black-BJAcrf3R.jpeg",
+    "src": "public/assets/img/bg-black.jpeg"
+  },
+  "public/assets/img/cover3.jpg": {
+    "file": "assets/cover3-CfnIKKNu.jpg",
+    "src": "public/assets/img/cover3.jpg"
+  },
+  "public/assets/img/header.jpg": {
+    "file": "assets/header-DbXJpjVM.jpg",
+    "src": "public/assets/img/header.jpg"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-WUM5mOTR.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-DlYOw6CL.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  }
+}
