@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tambahkan font Inter dari Google Fonts */
+:root {
+    --gold: #ffc300;
+    /* --dark-bg: #000814; */
+    /* --card-bg: #1a1a1a; */
+    --text-primary: #e0e0e0; /* Warna teks utama, putih keabuan */
+    --text-secondary: #a0a0a0; /* Warna teks sekunder */
+}
+
+/*-- Mengaplikasikan Warna dan Font Dasar --*/
+body {
+    /* background-color: var(--dark-bg); */
+    color: var(--text-primary);
+    font-family: "Inter", sans-serif; /* Menggunakan font yang lebih modern */
+    padding-bottom: 80px;
+}
+@media (min-width: 768px) {
+    body {
+        padding-bottom: 0; /* Hapus padding di desktop */
+    }
+}
+
+.bg-nav {
+    background-color: var(--dark-bg);
+}
+
+/*-- Desain Header Baru dengan Background Image Fixed dan Overlay --*/
+.hero-section {
+    position: relative; /* Penting untuk pseudo-element */
+    background-size: cover;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        /* Overlay gelap */ url("/public/assets/img/header.jpg");
+    background-position: center; /* Default untuk mobile */
+    /* Hapus atau komentari baris ini untuk menghindari masalah di iOS */
+    /* background-attachment: fixed; */
+}
+
+/* Hanya berlaku untuk layar dengan lebar minimal 768px (desktop) */
+@media (min-width: 768px) {
+    .hero-section {
+        background-position: top;
+        background-attachment: fixed; /* Aktifkan hanya di desktop di mana ini berfungsi */
+    }
+}
+
+/* articles */
+.article-home {
+    background-image: url("/public/assets/img/bg-black.jpeg");
+    background-position: center;
+    background-repeat: repeat;
+}
+
+
+.articles {
+    background-image: url("/public/assets/img/cover3.jpg");
+    background-position: center;
+    background-repeat: repeat;
+}
+
+/* LOGO SLIDER */
+
+.logo-carousel-container {
+    width: 200%; /* Lebar total container 2x lipat dari aslinya */
+    display: flex;
+}
+/*-- Animasi Carousel Logo --*/
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.logo-carousel {
+    animation: scroll 40s linear infinite;
+    width: 200%;
+    display: flex;
+}
+.logo-carousel:hover {
+    animation-play-state: paused;
+}
+
+/* CMS Dashboard */
+.sidebar {
+    transition: all 0.3s ease;
+}
+
+.content-area {
+    transition: all 0.3s ease;
+}
+
+.active-menu {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.article-image-preview {
+    max-height: 150px;
+    object-fit: cover;
+}
+
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        position: absolute;
+        z-index: 50;
+        height: 100vh;
+    }
+
+    .sidebar-open {
+        transform: translateX(0);
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 40;
+        display: none;
+    }
+
+    .overlay-open {
+        display: block;
+    }
+}
