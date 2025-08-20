@@ -14,10 +14,19 @@ class ArticleController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $articles = Article::latest()->get(); // Ambil semua artikel terbaru
-        return view('admin.articles.index', compact('articles'));
-    }
+{
+    // Mengambil artikel aktif dengan paginasi
+    $articles = Article::latest()->paginate(10);
+
+    // Menghitung total artikel (aktif + yang dihapus)
+    $totalArticles = Article::withTrashed()->count();
+
+    // Menghitung jumlah artikel yang soft-deleted
+    $deletedArticlesCount = Article::onlyTrashed()->count();
+
+    // Mengirimkan data ke view
+    return view('admin.articles.index', compact('articles', 'totalArticles', 'deletedArticlesCount'));
+}
 
     /**
      * Show the form for creating a new resource.

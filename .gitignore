@@ -1,8 +1,11 @@
-/.phpunit.cache
 /node_modules
 /public/hot
 /storage/*.key
-/storage/pail
+/storage/app/public/
+/storage/framework/cache/data/
+/storage/framework/sessions/
+/storage/framework/testing/
+/storage/framework/views/
 /vendor
 .env
 .env.backup
