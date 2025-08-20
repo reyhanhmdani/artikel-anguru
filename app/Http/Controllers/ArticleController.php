@@ -15,16 +15,12 @@ class ArticleController extends Controller
      */
     public function index()
 {
-    // Mengambil artikel aktif dengan paginasi
     $articles = Article::latest()->paginate(10);
 
-    // Menghitung total artikel (aktif + yang dihapus)
     $totalArticles = Article::withTrashed()->count();
 
-    // Menghitung jumlah artikel yang soft-deleted
     $deletedArticlesCount = Article::onlyTrashed()->count();
 
-    // Mengirimkan data ke view
     return view('admin.articles.index', compact('articles', 'totalArticles', 'deletedArticlesCount'));
 }
 
@@ -43,7 +39,6 @@ class ArticleController extends Controller
     {
         $data = $request->validated();
 
-        // Upload image jika ada
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('articles', 'public');
         }
@@ -61,10 +56,8 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
 {
-    // Ambil beberapa artikel terbaru, kecuali artikel yang sedang dibuka
     $latestArticles = Article::latest()->where('id', '!=', $article->id)->take(3)->get();
 
-    // Kirim kedua variabel ke view
     return view('admin.articles.show', compact('article', 'latestArticles'));
 }
 
@@ -83,14 +76,11 @@ class ArticleController extends Controller
     {
         $data = $request->validated();
 
-        // Kalau ada gambar baru
         if ($request->hasFile('image')) {
-            // Hapus gambar lama kalau ada
             if ($article->image && Storage::disk('public')->exists($article->image)) {
                 Storage::disk('public')->delete($article->image);
             }
 
-        // Simpan gambar baru
             $data['image'] = $request->file('image')->store('articles', 'public');
         }
 

@@ -13,25 +13,18 @@ class PublicController extends Controller
         return view('public.home', compact('articles'));
     }
 
-     public function articles()
+    public function articles()
     {
-        // Ambil satu artikel terbaru sebagai "top article"
-        $latestArticle = Article::latest()->first();
 
-        // Ambil sisa artikel lainnya dengan paginasi, kecuali artikel terbaru
-        $articles = Article::latest()
-                            ->where('id', '!=', $latestArticle->id ?? null)
-                            ->paginate(9); // Tampilkan 9 artikel per halaman
+    $articles = Article::latest()->paginate(10);
 
-        return view('public.articles', compact('latestArticle', 'articles'));
+    return view('public.articles', compact('articles'));
     }
 
     public function showPublic(Article $article)
     {
-        // Ambil artikel terbaru, kecuali artikel yang sedang dibuka
         $latestArticles = Article::latest()->where('id', '!=', $article->id)->take(3)->get();
 
-        // Kirim data ke view public
         return view('public.show-article', compact('article', 'latestArticles'));
     }
 }

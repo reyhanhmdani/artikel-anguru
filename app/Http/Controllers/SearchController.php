@@ -17,7 +17,6 @@ class SearchController extends Controller
                                ->latest()
                                ->paginate(10);
         } else {
-            // Jika query kosong, tampilkan semua artikel dengan paginasi
             $articles = Article::latest()->paginate(10);
         }
 
