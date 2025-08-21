@@ -18,7 +18,10 @@
                     </x-nav-link>
 
                     <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
-                        {{ __('Profile') }}
+                        {{ __('Setting User') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.biography.manage')" :active="request()->routeIs('biography.manage')">
+                        {{ __('Biography') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -80,8 +83,11 @@
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
-                {{ __('Profile') }}
+                {{ __('Setting User') }}
             </x-responsive-nav-link>
+            <x-nav-link :href="route('admin.biography.manage')" :active="request()->routeIs('biography.manage')">
+                {{ __('Biography') }}
+            </x-nav-link>
         </div>
 
         <div class="pt-4 pb-1 border-t border-gray-200">

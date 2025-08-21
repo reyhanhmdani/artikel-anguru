@@ -40,7 +40,7 @@
     {{-- Navigasi Bawah (Fixed) - Kode Anda yang sudah ada --}}
     <div class="fixed bottom-0 left-0 right-0 z-50 bg-dark-bg/80 backdrop-blur-sm border-t border-gray-700/50">
         <div class="flex items-center justify-around py-3 px-4">
-            <a href="profile" class="flex flex-col items-center text-text-secondary hover:text-text-primary">
+            <a href="bioghraphy" class="flex flex-col items-center text-text-secondary hover:text-text-primary">
                 <i class="fas fa-user text-xl mb-1"></i>
                 <span class="text-xs">Profil</span>
             </a>

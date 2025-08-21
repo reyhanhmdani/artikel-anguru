@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\BiographyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\SearchController;
@@ -12,6 +13,7 @@ Route::get('/search', [SearchController::class, 'search'])->name('public.search_
 Route::get('/', [PublicController::class, 'index'])->name('public.home');
 Route::get('/articles', [PublicController::class, 'articles'])->name('public.articles');
 Route::get('/articles/{article}', [PublicController::class, 'showPublic'])->name('public.show-article');
+Route::get('/bioghraphy', [BiographyController::class, 'show'])->name('public.biography');
 
 
 Route::get('/dashboard', function () {
@@ -22,6 +24,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('admin/biography', [BiographyController::class, 'manage'])->name('admin.biography.manage');
+    Route::post('admin/biography', [BiographyController::class, 'storeOrUpdate'])->name('admin.biography.storeOrUpdate');
+
 
      // Rute untuk Article
     Route::resource('admin/articles', ArticleController::class);

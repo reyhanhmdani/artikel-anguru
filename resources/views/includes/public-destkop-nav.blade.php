@@ -6,7 +6,7 @@
 
     <div class="flex justify-center items-center space-x-8">
         <a href="/" class="text-text-primary hover:text-gold transition-colors duration-200">Home</a>
-        <a href="/profile" class="text-text-primary hover:text-gold transition-colors duration-200">Profil</a>
+        <a href="/bioghraphy" class="text-text-primary hover:text-gold transition-colors duration-200">Profil</a>
         <a href="/articles" class="text-text-primary hover:text-gold transition-colors duration-200">Artikel</a>
         <a href="https://www.facebook.com/andre.raditya27"
             class="text-text-primary hover:text-gold transition-colors duration-200">Facebook</a>

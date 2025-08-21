@@ -13,9 +13,9 @@ class SearchController extends Controller
 
         if ($query) {
             $articles = Article::where('title', 'like', '%' . $query . '%')
-                               ->orWhere('content', 'like', '%' . $query . '%')
-                               ->latest()
-                               ->paginate(10);
+                            ->orWhere('content', 'like', '%' . $query . '%')
+                            ->latest()
+                            ->paginate(10);
         } else {
             $articles = Article::latest()->paginate(10);
         }
