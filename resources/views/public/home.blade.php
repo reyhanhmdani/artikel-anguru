@@ -74,14 +74,17 @@
 
 <section class="relative py-16 overflow-hidden">
     <div class="absolute inset-0">
-        <div class="w-full h-full bg-cover bg-center" style="background-image: url('{{ asset('assets/img/cover2.jpg') }}')"></div>
+        <div class="w-full h-full bg-cover bg-center"
+            style="background-image: url('{{ asset('assets/img/cover2.jpg') }}')"></div>
         <div class="absolute inset-0 bg-black opacity-60"></div>
     </div>
 
     <div class="container mx-auto px-6 relative text-center" data-aos="fade-up">
         <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gold" data-aos="fade-up">JOIN WITH US</h2>
-        <h3 class="text-2xl md:text-3xl font-semibold mb-8 text-text-primary" data-aos="fade-up" data-aos-delay="100">SANTRI PELAYAN MASYARAKAT</h3>
-        <p class="text-lg md:text-xl max-w-3xl mx-auto mb-10 text-text-secondary" data-aos="fade-up" data-aos-delay="200">
+        <h3 class="text-2xl md:text-3xl font-semibold mb-8 text-text-primary" data-aos="fade-up" data-aos-delay="100">
+            SANTRI PELAYAN MASYARAKAT</h3>
+        <p class="text-lg md:text-xl max-w-3xl mx-auto mb-10 text-text-secondary" data-aos="fade-up"
+            data-aos-delay="200">
             Kami adalah abdi dan juga santri, berkewajiban untuk bertumbuh seiringmya waktu. Melayani umat serta
             masyarakat. Kami berupaya
             menjadi yang terbaik dari setiap pribadi yang ada.
@@ -123,7 +126,7 @@
                         </a>
                     </h3>
                     <p class="text-text-secondary text-sm line-clamp-3">
-                        {{ Str::limit(strip_tags($article->content), 150) }}
+                        {{ Str::limit(html_entity_decode(strip_tags($article->content)), 150) }}
                     </p>
                 </div>
 
@@ -177,7 +180,7 @@
                 <img src="{{ asset('assets/icon/SIJUM-1.png') }}" alt="SIJUM" class="h-20 mx-8 object-contain" />
                 <img src="{{ asset('assets/icon/MASJIDMULTIMANFAAT-1.png') }}" alt="MASJIDMULTIMANFAAT"
                     class="h-20 mx-8 object-contain" />
-                <img src="{{ asset('assets/icon/RUMU-1.png  ') }}" alt="RUMU" class="h-20 mx-8 object-contain" />
+                <img src="{{ asset('assets/icon/RUMU-1.png') }}" alt="RUMU" class="h-20 mx-8 object-contain" />
                 <img src="{{ asset('assets/icon/SELFA-1.png') }}" alt="SELFA" class="h-20 mx-8 object-contain" />
 
                 <img src="{{ asset('assets/icon/ARDC-1.png') }}" alt="ARDC" class="h-20 mx-8 object-contain" />
@@ -190,7 +193,7 @@
                 <img src="{{ asset('assets/icon/SIJUM-1.png') }}" alt="SIJUM" class="h-20 mx-8 object-contain" />
                 <img src="{{ asset('assets/icon/MASJIDMULTIMANFAAT-1.png') }}" alt="MASJIDMULTIMANFAAT"
                     class="h-20 mx-8 object-contain" />
-                <img src="{{ asset('assets/icon/RUMU-1.png  ') }}" alt="RUMU" class="h-20 mx-8 object-contain" />
+                <img src="{{ asset('assets/icon/RUMU-1.png') }}" alt="RUMU" class="h-20 mx-8 object-contain" />
                 <img src="{{ asset('assets/icon/SELFA-1.png') }}" alt="SELFA" class="h-20 mx-8 object-contain" />
             </div>
         </div>

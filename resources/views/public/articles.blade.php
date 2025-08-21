@@ -61,7 +61,7 @@
                             </a>
                         </h3>
                         <p class="text-text-secondary text-sm line-clamp-3">
-                            {{ Str::limit(strip_tags($article->content), 150) }}
+                            {{ Str::limit(html_entity_decode(strip_tags($article->content)), 150) }}
                         </p>
                     </div>
 
