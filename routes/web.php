@@ -29,8 +29,19 @@ Route::middleware('auth')->group(function () {
     Route::post('admin/biography', [BiographyController::class, 'storeOrUpdate'])->name('admin.biography.storeOrUpdate');
 
 
-     // Rute untuk Article
+   // Rute untuk mengelola soft deletes (harus di atas rute resource)
+    Route::get('admin/articles/trash', [ArticleController::class, 'trash'])->name('articles.trash');
+    Route::post('admin/articles/{article}/restore', [ArticleController::class, 'restore'])->name('articles.restore');
+    Route::delete('admin/articles/{article}/force-delete', [ArticleController::class, 'forceDelete'])->name('articles.force-delete');
+
+    // Rute untuk aksi massal (restore dan delete)
+    Route::post('admin/articles/bulk-restore', [ArticleController::class, 'bulkRestore'])->name('articles.bulk-restore');
+    Route::delete('admin/articles/bulk-delete', [ArticleController::class, 'bulkDelete'])->name('articles.bulk-delete');
+
+
+    // Rute untuk Article
     Route::resource('admin/articles', ArticleController::class);
+
 });
 
 require __DIR__.'/auth.php';

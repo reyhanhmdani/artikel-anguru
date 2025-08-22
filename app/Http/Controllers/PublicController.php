@@ -16,7 +16,7 @@ class PublicController extends Controller
     public function articles()
     {
 
-    $articles = Article::latest()->paginate(10);
+    $articles = Article::latest()->paginate(21);
 
     return view('public.articles', compact('articles'));
     }
@@ -27,4 +27,5 @@ class PublicController extends Controller
 
         return view('public.show-article', compact('article', 'latestArticles'));
     }
+
 }

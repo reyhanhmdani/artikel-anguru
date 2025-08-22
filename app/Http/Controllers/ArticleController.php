@@ -14,15 +14,15 @@ class ArticleController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-{
-    $articles = Article::latest()->paginate(10);
+    {
+        $articles = Article::latest()->paginate(10);
 
-    $totalArticles = Article::withTrashed()->count();
+        $totalArticles = Article::withTrashed()->count();
 
-    $deletedArticlesCount = Article::onlyTrashed()->count();
+        $deletedArticlesCount = Article::onlyTrashed()->count();
 
-    return view('admin.articles.index', compact('articles', 'totalArticles', 'deletedArticlesCount'));
-}
+        return view('admin.articles.index', compact('articles', 'totalArticles', 'deletedArticlesCount'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -97,12 +97,35 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        if ($article->image && Storage::disk('public')->exists($article->image)) {
-        Storage::disk('public')->delete($article->image);
+        $article->delete();
+
+        return redirect()->route('articles.index')->with('success', 'Artikel berhasil dihapus.');
     }
 
-    $article->delete();
 
-    return redirect()->route('articles.index')->with('success', 'Artikel berhasil dihapus.');
+    public function trash()
+    {
+        $articles = Article::onlyTrashed()->latest()->paginate(10);
+        return view('admin.articles.trash', compact('articles'));
+    }
+
+    public function restore($id)
+    {
+        $article = Article::onlyTrashed()->findOrFail($id);
+        $article->restore();
+
+        return redirect()->route('articles.index')->with('success', 'Artikel berhasil di restore.');
+    }
+
+    public function forceDelete($id)
+    {
+        $article = Article::onlyTrashed()->findOrFail($id);
+        if ($article->image && Storage::disk('public')->exists($article->image)) {
+        Storage::disk('public')->delete($article->image);
+        }
+
+        $article->forceDelete();
+
+        return redirect()->route('articles.index')->with('success', 'Artikel berhasil dihapus permanen.');
     }
 }
