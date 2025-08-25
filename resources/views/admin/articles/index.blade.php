@@ -4,6 +4,9 @@
             {{ __('Manajemen Artikel') }}
         </h2>
     </x-slot>
+    <x-slot name="title">
+        Manajemen Artikel
+    </x-slot>
 
     <div class="py-12 bg-gray-100 min-h-screen">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -16,18 +19,18 @@
                 <div class="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-4">
                     {{-- Tombol Tambah Artikel Baru --}}
                     <a href="{{ route('articles.create') }}"
-                        class="inline-flex items-center w-full sm:w-auto justify-center bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                        class="inline-flex items-center w-full sm:w-auto justify-center bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
                             fill="currentColor">
                             <path fill-rule="evenodd"
                                 d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                                 clip-rule="evenodd" />
                         </svg>
-                        Tambah Artikel Baru
+                        Artikel Baru
                     </a>
                     {{-- Tombol untuk melihat halaman sampah --}}
                     <a href="{{ route('articles.trash') }}"
-                        class="inline-flex items-center w-full sm:w-auto justify-center bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                        class="inline-flex items-center w-full sm:w-auto justify-center bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
                         <i class="fas fa-trash-restore mr-2"></i>
                         Kotak Sampah
                     </a>
