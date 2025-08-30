@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ArticleRequest;
 use App\Http\Requests\StoreArticleRequest;
 use App\Models\Article;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Storage;
 
@@ -43,10 +44,13 @@ class ArticleController extends Controller
             $data['image'] = $request->file('image')->store('articles', 'public');
         }
 
-        // Set kategori otomatis
-        $data['category'] = (date('Y', strtotime($data['created_at'])) == now()->year) ? 'Terbaru' : null;
+        $article = Article::create($data);
 
-        Article::create($data);
+        if ($article->created_at->isAfter(Carbon::now()->subDays(30))){
+            $article->category = 'Terbaru';
+            $article->save(); // Simpan perubahan
+        }
+
 
         return redirect()->route('articles.index')->with('success', 'Artikel berhasil dibuat.');
     }
@@ -73,24 +77,26 @@ class ArticleController extends Controller
      * Update the specified resource in storage.
      */
     public function update(ArticleRequest $request, Article $article)
-    {
-        $data = $request->validated();
+{
+    $data = $request->validated();
 
-        if ($request->hasFile('image')) {
-            if ($article->image && Storage::disk('public')->exists($article->image)) {
-                Storage::disk('public')->delete($article->image);
-            }
-
-            $data['image'] = $request->file('image')->store('articles', 'public');
+    // Logika penanganan gambar: hapus gambar lama, upload yang baru
+    if ($request->hasFile('image')) {
+        if ($article->image && Storage::disk('public')->exists($article->image)) {
+            Storage::disk('public')->delete($article->image);
         }
 
-        $data['category'] = $request->input('category');
-
-
-        $article->update($data);
-
-        return redirect()->route('articles.index')->with('success', 'Artikel berhasil diperbarui.');
+        $data['image'] = $request->file('image')->store('articles', 'public');
     }
+
+    // Ambil nilai kategori langsung dari form
+    $data['category'] = $request->input('category');
+
+
+    $article->update($data);
+
+    return redirect()->route('articles.index')->with('success', 'Artikel berhasil diperbarui.');
+}
 
     /**
      * Remove the specified resource from storage.
