@@ -29,8 +29,8 @@
                 </a>
             @endif
 
-            {{-- Nomor Halaman (Hanya untuk Desktop) --}}
-            <div class="hidden sm:block">
+            {{-- Nomor Halaman (Hanya untuk Desktop dan Mobile) --}}
+            <div class="block">
                 <span class="relative z-0 inline-flex shadow-sm rounded-md">
                     @foreach ($elements as $element)
                         {{-- "Three Dots" Separator --}}
