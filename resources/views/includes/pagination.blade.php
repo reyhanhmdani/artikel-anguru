@@ -134,7 +134,7 @@
                 </a>
             @else
                 <span
-                    class="flex-1 text-center py-2 -ml-px text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default rounded-r-md leading-5">
+                    class="flex-1 text-center py-2 -ml-px text-sm font-medium text-gray-400 bg-white border border-gray-300 cursor-default rounded-r-md leading-5">
                     Selanjutnya
                 </span>
             @endif
