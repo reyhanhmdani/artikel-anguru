@@ -4,19 +4,17 @@
 
 @section('content')
 
-<header class="hero-section pt-32 pb-20 md:pt-48 md:pb-32 text-text-primary">
-    <div class="container mx-auto px-6 text-center">
-        <h1 class="text-4xl md:text-6xl font-black mb-6 font-khusus text-gold" data-aos="fade-up">Andre Raditya</h1>
-        <p class="text-xl md:text-2xl mb-8" data-aos="fade-up" data-aos-delay="100">Founder Sijum – Tumbuh Bersama
-            Wujudkan Kebaikan</p>
-        <p class="text-lg md:text-xl mb-10 max-w-3xl mx-auto font-light" data-aos="fade-up" data-aos-delay="200">
-            I am a writer. My Ability is to think what you don't.
+<header class="hero-section relative pt-48 pb-16 md:pt-64 md:pb-24 text-text-primary">
+    <div class="container relative mx-auto px-6 text-center text-white">
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-4 font-khusus text-gold" data-aos="fade-up">
+            Andre Raditya
+        </h1>
+        <p class="text-xl md:text-2xl mb-6 font-medium" data-aos="fade-up" data-aos-delay="100">
+            Founder SIJUM — Bertumbuh Bersama Dalam Kebaikan
         </p>
-        <a href="https://wa.me/089652750271"
-            class="inline-block font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 bg-gold text-dark-bg"
-            data-aos="fade-up" data-aos-delay="300">
-            Inviting Me
-        </a>
+        <p class="text-base md:text-lg mb-8 max-w-2xl mx-auto font-light" data-aos="fade-up" data-aos-delay="200">
+            Saya seorang penulis. Kemampuan saya adalah memikirkan hal yang belum terpikirkan oleh orang lain.
+        </p>
     </div>
 </header>
 

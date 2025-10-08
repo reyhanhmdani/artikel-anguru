@@ -21,6 +21,93 @@
         </div>
     </section>
 
+    {{-- Filter Arsip: Dropdown Pop-up Minimalis --}}
+    <div class="container mx-auto px-6 pt-8 pb-10">
+        <div class="flex justify-end">
+            {{-- Dropdown Filter Utama --}}
+            <div x-data="{ open: false }" class="relative inline-block text-left z-20">
+                {{-- Tombol Toggle Filter --}}
+                <button @click="open = !open" type="button"
+                    class="inline-flex justify-center w-full rounded-lg border border-gray-600 shadow-sm px-4 py-2 bg-card-bg text-sm font-medium text-text-primary hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-dark-bg focus:ring-gold transition duration-200">
+                    @if($year)
+                    {{-- Tampilan Tombol --}}
+                    {{-- Pengecekan $month sudah aman karena sudah dikonversi jadi integer di controller --}}
+                    @if($month)
+                    {{ \Carbon\Carbon::create()->month($month)->translatedFormat('F') . ' ' . $year }}
+                    @else
+                    {{ 'Arsip ' . $year }}
+                    @endif
+                    @else
+                    Arsip (Tahun & Bulan)
+                    @endif
+
+                    {{-- Ikon Arrow --}}
+                    <svg class="h-5 w-5 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                        aria-hidden="true">
+                        <path fill-rule="evenodd"
+                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </button>
+
+                {{-- Panel Dropdown (Menggantikan pop-up native browser) --}}
+                <div x-show="open" @click.away="open = false" x-transition:enter="transition ease-out duration-100"
+                    x-transition:enter-start="transform opacity-0 scale-95"
+                    x-transition:enter-end="transform opacity-100 scale-100"
+                    x-transition:leave="transition ease-in duration-75"
+                    x-transition:leave-start="transform opacity-100 scale-100"
+                    x-transition:leave-end="transform opacity-0 scale-95"
+                    class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-card-bg ring-1 ring-black ring-opacity-5 divide-y divide-gray-700 focus:outline-none"
+                    role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
+
+                    <div class="py-1">
+                        {{-- 1. PILIHAN TAHUN (Semua Kategori) --}}
+                        <div class="px-3 py-2 text-gold font-semibold text-xs uppercase tracking-wider">Pilih Tahun
+                        </div>
+                        @foreach($availableYears as $availableYear)
+                        <a href="{{ route('public.articles', ['year' => $availableYear]) }}"
+                            class="flex items-center px-4 py-2 text-sm hover:bg-dark-bg @if($year == $availableYear) text-gold font-semibold @else text-text-primary @endif"
+                            role="menuitem">
+                            {{ $availableYear }}
+                        </a>
+                        @endforeach
+                    </div>
+
+                    {{-- 2. PILIHAN BULAN (Filter) --}}
+                    @if($year)
+                    <div class="py-1">
+                        <div class="px-3 py-2 text-gold font-semibold text-xs uppercase tracking-wider">Bulan ({{ $year
+                            }})</div>
+                        <a href="{{ route('public.articles', ['year' => $year]) }}"
+                            class="flex items-center px-4 py-2 text-sm hover:bg-dark-bg @if(!$month) text-red-400 font-semibold @else text-text-primary @endif"
+                            role="menuitem">
+                            Semua Bulan
+                        </a>
+                        @foreach($availableMonths as $availableMonth)
+                        <a href="{{ route('public.articles', ['year' => $year, 'month' => $availableMonth->month_num]) }}"
+                            class="flex items-center px-4 py-2 text-sm hover:bg-dark-bg @if($month == $availableMonth->month_num) text-gold font-semibold @else text-text-primary @endif"
+                            role="menuitem">
+                            {{ $availableMonth->month_name }}
+                        </a>
+                        @endforeach
+                    </div>
+                    @endif
+
+                    {{-- Tombol Reset --}}
+                    @if($year || $month)
+                    <div class="py-1">
+                        <a href="{{ route('public.articles') }}"
+                            class="flex items-center px-4 py-2 text-sm bg-red-600 text-white hover:bg-red-700 rounded-b-md"
+                            role="menuitem">
+                            Reset Filter
+                        </a>
+                    </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+
     {{-- Artikel Terbaru (tampilan khusus) --}}
     <section class="py-16 bg-dark-bg">
         <div class="container mx-auto px-6">
