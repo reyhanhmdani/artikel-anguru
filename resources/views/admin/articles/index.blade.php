@@ -280,9 +280,9 @@
             </div>
 
             {{-- Paginasi --}}
-            @if($articles->hasPages() && $articles->total() > 0)
+            @if($articles->hasPages())
             <div class="px-6 py-4 mt-6 bg-white rounded-lg shadow-xl border-t border-gray-200">
-                {{ $articles->links('includes.pagination')->withQueryString() }}
+                {{ $articles->links('includes.pagination')}}
             </div>
             @endif
         </div>
