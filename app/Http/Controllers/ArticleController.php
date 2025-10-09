@@ -32,7 +32,7 @@ class ArticleController extends Controller
         // Jika hanya ingin menampilkan artikel yang AKTIF (tidak terhapus)
         $query->whereNull('deleted_at');
 
-        $articles = $query->latest()->paginate(10);
+        $articles = $query->latest()->paginate(10)->withQueryString();
 
         $totalArticles = Article::withTrashed()->count();
 

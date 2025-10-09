@@ -30,10 +30,10 @@ class PublicController extends Controller
 
      if ($month) {
         $query->whereMonth('created_at', $month);
-    }   
+    }
 
     // Ambil hasil paginasi
-    $articles = $query->paginate(21);
+    $articles = $query->paginate(9)->withQueryString();
 
     // Dapatkan daftar tahun unik yang ada untuk filter
     $availableYears = Article::selectRaw('YEAR(created_at) as year')
