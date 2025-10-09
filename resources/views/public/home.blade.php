@@ -136,7 +136,7 @@
                                 d="M256,0C114.837,0,0,114.837,0,256s114.837,256,256,256s256-114.837,256-256S397.163,0,256,0z M277.333,256 c0,11.797-9.536,21.333-21.333,21.333h-85.333c-11.797,0-21.333-9.536-21.333-21.333s9.536-21.333,21.333-21.333h64v-128 c0-11.797,9.536-21.333,21.333-21.333s21.333,9.536,21.333,21.333V256z">
                             </path>
                         </svg>
-                        <span class="ml-1">{{ $article->created_at->diffForHumans() }}</span>
+                        <span class="ml-1">{{ $article->created_at->translatedFormat('j F Y') }}</span> 
                     </span>
                     <a href="{{ route('public.show-article', $article->id) }}"
                         class="py-1 text-xs font-regular text-text-secondary flex items-center hover:text-gold transition-colors duration-200">

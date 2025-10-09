@@ -14,15 +14,52 @@ class ArticleController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $articles = Article::latest()->paginate(10);
+        $year = $request->get('year');
+        $month = $request->get('month') ? (int) $request->get('month') : null;
+
+        $query = Article::query();
+
+        if ($year) {
+            $query->whereYear('created_at', $year);
+        }
+
+        if ($month) {
+            $query->whereMonth('created_at', $month);
+        }
+
+        // Jika hanya ingin menampilkan artikel yang AKTIF (tidak terhapus)
+        $query->whereNull('deleted_at');
+
+        $articles = $query->latest()->paginate(10);
 
         $totalArticles = Article::withTrashed()->count();
 
         $deletedArticlesCount = Article::onlyTrashed()->count();
 
-        return view('admin.articles.index', compact('articles', 'totalArticles', 'deletedArticlesCount'));
+        $availableYears = Article::selectRaw('YEAR(created_at) as year')
+            ->distinct()
+            ->orderBy('year', 'desc')
+            ->pluck('year');
+
+        $availableMonths = [];
+        if ($year) {
+            $availableMonths = Article::selectRaw('MONTH(created_at) as month_num, MONTHNAME
+            (created_at) as month_name')
+                ->whereYear('created_at', $year)
+                ->distinct()
+                ->orderBy('month_num')
+                ->get();
+        }
+
+        return view('admin.articles.index', compact('articles',
+            'totalArticles',
+            'deletedArticlesCount',
+            'availableYears',
+            'availableMonths',
+            'year',
+            'month' ));
     }
 
     /**

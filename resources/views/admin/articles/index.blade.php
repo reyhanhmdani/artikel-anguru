@@ -65,6 +65,58 @@
                 </div>
             </div>
 
+            {{-- 🔽 Filter Tahun & Bulan (Versi Minimalis Responsif) --}}
+            <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-4 sm:p-6 mt-6">
+                <form action="{{ route('articles.index') }}" method="GET"
+                    class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
+
+                    {{-- Title --}}
+                    <h4 class="text-base sm:text-lg font-semibold text-gray-700">Filter Arsip</h4>
+
+                    <div class="flex flex-wrap items-center gap-3 sm:gap-4">
+                        {{-- Dropdown Tahun --}}
+                        <div class="relative">
+                            <select name="year" onchange="this.form.submit()"
+                                class="w-36 sm:w-44 appearance-none bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg py-2 pl-3 pr-8 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 transition-all">
+                                <option value="">Semua Tahun</option>
+                                @foreach($availableYears as $availableYear)
+                                <option value="{{ $availableYear }}" @selected($year==$availableYear)>
+                                    {{ $availableYear }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        {{-- Dropdown Bulan --}}
+                        @if($year)
+                        <div class="relative">
+                            <select name="month" onchange="this.form.submit()"
+                                class="w-36 sm:w-44 appearance-none bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg py-2 pl-3 pr-8 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 transition-all">
+                                <option value="">Semua Bulan ({{ $year }})</option>
+                                @foreach($availableMonths as $availableMonth)
+                                <option value="{{ $availableMonth->month_num }}" @selected($month==$availableMonth->
+                                    month_num)>
+                                    {{
+                                    \Carbon\Carbon::create()->month($availableMonth->month_num)->translatedFormat('F')
+                                    }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        @endif
+
+                        {{-- Tombol Reset --}}
+                        @if($year || $month)
+                        <a href="{{ route('articles.index') }}"
+                            class="px-4 py-2 bg-red-500 text-white text-sm rounded-lg hover:bg-red-600 focus:ring-2 focus:ring-red-300 transition-all duration-200 shadow-sm">
+                            Reset
+                        </a>
+                        @endif
+                    </div>
+                </form>
+            </div>
+
+
             <div class="mt-8">
                 {{-- Tampilan Card untuk Mode Mobile (Layar Kecil) --}}
                 <div class="block md:hidden">
@@ -230,7 +282,7 @@
             {{-- Paginasi --}}
             @if($articles->hasPages())
             <div class="px-6 py-4 mt-6 bg-white rounded-lg shadow-xl border-t border-gray-200">
-                {{ $articles->links('includes.pagination') }}
+                {{ $articles->links('includes.pagination')->withQueryString() }}
             </div>
             @endif
         </div>
