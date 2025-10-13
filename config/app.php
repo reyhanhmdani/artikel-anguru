@@ -14,7 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Andreraditya.guru'),
-    'dashboard' => env('APP_DASHBOARD', 'Dashboard'),
+    'dashboard' => env('APP_DASHBOARD', 'Dashboard Anguru'),
 
     /*
     |--------------------------------------------------------------------------
