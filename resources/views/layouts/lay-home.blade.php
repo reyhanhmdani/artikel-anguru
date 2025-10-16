@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    @include('includes.public-head')
+@include('includes.public-head')
 </head>
 
 <body class="font-sans bg-dark-bg">
